@@ -1,0 +1,45 @@
+name: Build Lesson 03 Audio
+
+on:
+  push:
+    paths:
+      - 'lesson-03/conversation.txt'
+      - 'lesson-03/listening.txt'
+      - '.github/workflows/build-lesson-03-audio.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-audio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install edge-tts
+        run: pip install edge-tts
+
+      - name: Generate MP3 files
+        run: |
+          mkdir -p audio/lesson-03
+          edge-tts --voice en-US-GuyNeural --rate=-5% --file lesson-03/conversation.txt --write-media audio/lesson-03/conversation.mp3
+          edge-tts --voice en-US-GuyNeural --rate=-5% --file lesson-03/listening.txt --write-media audio/lesson-03/listening.mp3
+
+      - name: Commit generated audio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/lesson-03/conversation.mp3 audio/lesson-03/listening.mp3
+          if git diff --cached --quiet; then
+            echo "No audio changes to commit."
+          else
+            git commit -m "Generate Lesson 03 audio"
+            git push
+          fi
