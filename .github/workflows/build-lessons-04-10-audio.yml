@@ -1,0 +1,52 @@
+name: Build Lessons 04-10 Audio
+
+on:
+  push:
+    paths:
+      - 'lesson-04/**'
+      - 'lesson-05/**'
+      - 'lesson-06/**'
+      - 'lesson-07/**'
+      - 'lesson-08/**'
+      - 'lesson-09/**'
+      - 'lesson-10/**'
+      - '.github/workflows/build-lessons-04-10-audio.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-audio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install edge-tts
+        run: pip install edge-tts
+
+      - name: Generate MP3 files
+        run: |
+          for n in 04 05 06 07 08 09 10; do
+            mkdir -p "audio/lesson-$n"
+            edge-tts --voice en-US-GuyNeural --rate=-5% --file "lesson-$n/conversation.txt" --write-media "audio/lesson-$n/conversation.mp3"
+            edge-tts --voice en-US-GuyNeural --rate=-5% --file "lesson-$n/listening.txt" --write-media "audio/lesson-$n/listening.mp3"
+          done
+
+      - name: Commit generated audio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/lesson-04 audio/lesson-05 audio/lesson-06 audio/lesson-07 audio/lesson-08 audio/lesson-09 audio/lesson-10
+          if git diff --cached --quiet; then
+            echo "No audio changes to commit."
+          else
+            git commit -m "Generate audio for Lessons 04-10"
+            git push
+          fi
