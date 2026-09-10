@@ -1,0 +1,14 @@
+Razieh: Hi, Jabbar. Can I ask you a few questions about tomorrow's inspection?
+Jabbar: Sure. Go ahead.
+Razieh: What time will you arrive?
+Jabbar: Around eight thirty.
+Razieh: And where should we meet you?
+Jabbar: At the terminal office is fine.
+Razieh: Who will be with you?
+Jabbar: One other surveyor.
+Razieh: Do you need the cargo documents before the inspection?
+Jabbar: Yes, please. Could you email them to me today?
+Razieh: Which documents do you need exactly?
+Jabbar: The latest quantity report and the cargo specification.
+Razieh: Got it. Anything else you need?
+Jabbar: No, that's everything. Thanks.
