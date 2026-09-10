@@ -1,0 +1,12 @@
+Seyed: Hi, Sam. Could you send us the latest cargo figures, please?
+Sam: Sure. I can send them in about ten minutes.
+Seyed: Thanks. Could you also confirm the tank temperatures?
+Sam: Of course. Do you need the pressure readings as well?
+Seyed: Yes, please, if possible.
+Sam: No problem. I'll include them in the same message.
+Seyed: Great. Would you mind calling me when the figures are ready?
+Sam: Not at all. I'll call you right away.
+Seyed: And could you please copy Aref on the message?
+Sam: Sure. Anything else?
+Seyed: No, that's all. I really appreciate your help.
+Sam: You're welcome.
